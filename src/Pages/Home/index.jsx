@@ -2,6 +2,7 @@ import Card from "../../Components/Card"
 import { useState, useEffect, useContext } from "react"
 import ProductDetail from "../../Components/ProductDetail"
 import { ShoppingCartContext } from "../../context"
+import CheckoutSideMenu from "../../Components/CheckoutSideMenu"
 
 const Home = () => {
 
@@ -23,8 +24,6 @@ const Home = () => {
           <Card key={index} product={product} />
         ))}
       </div>
-      
-      <ProductDetail />
     </>
   )
 }

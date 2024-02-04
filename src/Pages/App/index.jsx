@@ -5,7 +5,6 @@ import MyOrder from "../MyOrder"
 import MyOrders from "../MyOrders"
 import NotFound from "../NotFound"
 import SignIn from "../SignIn"
-import "./App.css"
 import NavBar from "../../Components/NavBar"
 import Layout from "../../Components/Layout"
 import { ShoppingCartProvider } from "../../context"
@@ -24,6 +23,9 @@ const AppRoutes = () => {
     },
     {
       path: "/my-orders", element: <MyOrders />
+    },
+    {
+      path: "/my-order/:id", element: <MyOrder />
     },
     {
       path: "/sign-in", element: <SignIn />

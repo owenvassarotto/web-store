@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen -mt-20">
+    <div className="flex items-center justify-center min-h-screen -mt-24">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-gray-800">Página no encontrada</h1>
         <p className="text-lg text-gray-600 mb-8">Lo sentimos, la página que estás buscando no existe.</p>

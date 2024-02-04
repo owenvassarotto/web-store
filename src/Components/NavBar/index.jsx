@@ -5,8 +5,14 @@ import { FaShoppingBag } from "react-icons/fa";
 
 const NavBar = () => {
 
-    const { count } = useContext(ShoppingCartContext);
+    const { count, openCheckoutSideMenu, closeProductDetail } = useContext(ShoppingCartContext);
 
+    /*
+        "electronics",
+        "jewelery",
+        "men's clothing",
+        "women's clothing"
+    */ 
   return (
     <nav id="sidebar" className="flex justify-between items-center fixed top-0 shadow w-full z-10 py-5 px-8 text-sm font-light bg-white">
         <ul className="flex items-center gap-3">
@@ -22,14 +28,7 @@ const NavBar = () => {
                     to={"/all"}
                 >
                     All
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
-                    to={"/clothes"}
-                >
-                    Clothes
-                </NavLink>
+                </NavLink> 
             </li>
             <li>
                 <NavLink
@@ -40,23 +39,23 @@ const NavBar = () => {
             </li>
             <li>
                 <NavLink
-                    to={"/furnitures"}
+                    to={"/jewelery"}
                 >
-                    Furnitures
+                    Jewelery
                 </NavLink>
             </li>
             <li>
                 <NavLink
-                    to={"/toys"}
+                    to={"/mens-clothing"}
                 >
-                    Toys
+                    Men's Clothing
                 </NavLink>
             </li>
             <li>
                 <NavLink
-                    to={"/others"}
+                    to={"/womens-clothing"}
                 >
-                    Others
+                    Women's Clothing
                 </NavLink>
             </li>
         </ul>
@@ -85,10 +84,16 @@ const NavBar = () => {
                     Sign In
                 </NavLink>
             </li>
-            <li className="font-bold flex gap-1 items-center">
+            <button 
+                className="font-bold flex gap-1 items-center"
+                onClick={() => {
+                    closeProductDetail()
+                    openCheckoutSideMenu()
+                }}
+            >
                 <FaShoppingBag /> 
                 {count}
-            </li>
+            </button>
         </ul>
     </nav>
   )
