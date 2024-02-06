@@ -1,8 +1,9 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { ShoppingCartContext } from "../../context"
 import OrderCard from "../../Components/OrderCard";
 import { Link, useParams } from "react-router-dom";
 import { MdArrowBackIos } from "react-icons/md";
+import { totalPrice } from "../../utils";
 
 const MyOrder = () => {
 
@@ -44,6 +45,12 @@ const MyOrder = () => {
     }
   }
 
+  // Calculating total price
+  const calculateTotal = (id) => {
+    const currentOrder = id === "last" ? orders.slice(-1)[0] : orders.find((order) => order.id === id);
+    return currentOrder ? totalPrice(currentOrder.products) : 0;
+  };
+
 return (
     <div className="flex flex-col gap-4 px-4 mb-12 w-80">
         <div className="flex items-center justify-center gap-10">
@@ -53,6 +60,10 @@ return (
           <h1 className="text-center mt-4 mb-6 text-2xl">My Order</h1>
         </div>
         {showOrder(params.id)}
+        <div className="flex justify-between font-bold uppercase text-xl mt-4">
+          <p>Total:</p>
+          <span>${calculateTotal(params.id)}</span>
+        </div>
     </div>
   )
 }

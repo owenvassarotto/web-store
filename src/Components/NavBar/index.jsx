@@ -5,7 +5,7 @@ import { FaShoppingBag } from "react-icons/fa";
 
 const NavBar = () => {
 
-    const { count, openCheckoutSideMenu, closeProductDetail } = useContext(ShoppingCartContext);
+    const { count, openCheckoutSideMenu, closeProductDetail, productsCategories } = useContext(ShoppingCartContext);
 
     /*
         "electronics",
@@ -25,39 +25,21 @@ const NavBar = () => {
             </li>
             <li>
                 <NavLink
-                    to={"/all"}
+                    to={"/"}
                 >
                     All
                 </NavLink> 
             </li>
-            <li>
-                <NavLink
-                    to={"/electronics"}
-                >
-                    Electronics
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
-                    to={"/jewelery"}
-                >
-                    Jewelery
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
-                    to={"/mens-clothing"}
-                >
-                    Men's Clothing
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
-                    to={"/womens-clothing"}
-                >
-                    Women's Clothing
-                </NavLink>
-            </li>
+            {productsCategories?.map(category => (
+                <li key={category}>
+                    <NavLink
+                        to={category}
+                        className="capitalize"
+                    >
+                        {category}
+                    </NavLink> 
+                </li>
+            ))}
         </ul>
         <ul className="flex items-center gap-3">
             <li className="text-black/60">

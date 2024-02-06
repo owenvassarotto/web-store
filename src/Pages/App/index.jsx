@@ -8,6 +8,7 @@ import SignIn from "../SignIn"
 import NavBar from "../../Components/NavBar"
 import Layout from "../../Components/Layout"
 import { ShoppingCartProvider } from "../../context"
+import Footer from "../../Components/Footer"
 
 // function to set and return the routes
 const AppRoutes = () => {
@@ -16,16 +17,22 @@ const AppRoutes = () => {
       path: "/", element: <Home />
     },
     {
+      path: "/all", element: <Home />
+    },
+    {
+      path: "/:category", element: <Home />
+    },
+    {
       path: "/my-account", element: <MyAccount />
     },
     {
       path: "/my-order", element: <MyOrder />
     },
     {
-      path: "/my-orders", element: <MyOrders />
+      path: "/my-order/:id", element: <MyOrder />
     },
     {
-      path: "/my-order/:id", element: <MyOrder />
+      path: "/my-orders", element: <MyOrders />
     },
     {
       path: "/sign-in", element: <SignIn />
@@ -47,6 +54,7 @@ const App = () => {
         <Layout>
           <AppRoutes />
         </Layout>
+        <Footer />
       </BrowserRouter>
     </ShoppingCartProvider>
   )

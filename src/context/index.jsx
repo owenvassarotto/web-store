@@ -4,7 +4,6 @@ import { createContext, useEffect, useState } from "react";
 const ShoppingCartContext = createContext();
 
 const ShoppingCartProvider = ({children}) => {
-
     
     // Product Detail - Open/Close
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -41,6 +40,63 @@ const ShoppingCartProvider = ({children}) => {
         setCartProducts(newCartProducts);
     }
 
+    // Get products
+    // state to save API's products
+    const [products, setProducts] = useState(null);
+    const [filteredProducts, setFilteredProducts] = useState(null);
+
+    // Get products by title
+    const [searchByTitle, setSearchByTitle] = useState(null);
+
+    // Get categories
+    const [productsCategories, setProductsCategories] = useState(null);
+
+    const [searchByCategory, setSearchByCategory] = useState(null);
+
+    useEffect(() => {
+        // getting all products from API
+        fetch("https://fakestoreapi.com/products")
+            .then(response => response.json())
+            .then(data => setProducts(data))
+            .catch(err => console.log("Error fetching products: ", err))
+
+        // getting all products categories from API
+        fetch("https://fakestoreapi.com/products/categories")
+            .then(response => response.json())
+            .then(data => setProductsCategories(data))
+            .catch(err => console.log("Error fetching products categories: ", err))
+    }, [])
+
+    const filteredProductsByTitle = (items, title) => items?.filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
+
+    const filteredProductsByCategory = (items, category) => items?.filter(item => item.category === category);
+
+    // Filtrado por título
+    useEffect(() => {
+        if (searchByTitle) {
+            const filteredByTitle = filteredProductsByTitle(products, searchByTitle);
+            setFilteredProducts(filteredByTitle);
+        }
+    }, [searchByTitle, products]);
+
+    // Filtrado por categoría
+    useEffect(() => {
+        if (searchByCategory) {
+            const filteredByCategory = filteredProductsByCategory(products, searchByCategory);
+            setFilteredProducts(filteredByCategory);
+        }
+    }, [searchByCategory, products]);
+
+    // Filtrado combinado
+    useEffect(() => {
+        if (searchByTitle && searchByCategory) {
+            const filteredByBoth = filteredProductsByTitle(filteredProductsByCategory(products, searchByCategory), searchByTitle);
+            setFilteredProducts(filteredByBoth);
+        } else if (!searchByTitle && !searchByCategory) {
+            setFilteredProducts(products);
+        }
+    }, [searchByTitle, searchByCategory, products]);
+
     return (
         <ShoppingCartContext.Provider
             value={{
@@ -59,6 +115,14 @@ const ShoppingCartProvider = ({children}) => {
                 deleteProductFromCart,
                 orders,
                 setOrders,
+                products,
+                setProducts,
+                searchByTitle,
+                setSearchByTitle,
+                filteredProducts,
+                productsCategories,
+                searchByCategory,
+                setSearchByCategory,
             }}
         >
             {children}
