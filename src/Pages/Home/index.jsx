@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 const Home = () => {
 
-  const { products, searchByTitle, setSearchByTitle, filteredProducts, setSearchByCategory } = useContext(ShoppingCartContext);
+  const { setSearchByTitle, filteredProducts, setSearchByCategory } = useContext(ShoppingCartContext);
 
   const params = useParams();
   useEffect(() => {
@@ -35,11 +35,11 @@ const Home = () => {
       <input 
         type="text" 
         placeholder="Search a product"
-        className="border border-gray-400 w-80 rounded-lg px-4 py-2 mb-6 focus:outline-none"  
+        className="border border-gray-400 bg-slate-800 w-80 rounded-lg px-4 py-2 mb-6 focus:outline-none"  
         onChange={e => setSearchByTitle(e.target.value)}
       />
 
-      <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg items-center justify-center">
+      <div className="grid md:grid-cols-4 gap-4 w-full place-items-center justify-center items-center max-w-screen-lg my-4">
         {renderView()}
       </div>
     </>

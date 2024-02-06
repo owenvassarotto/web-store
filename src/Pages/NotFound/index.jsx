@@ -4,8 +4,8 @@ const NotFound = () => {
   return (
     <div className="flex items-center justify-center min-h-screen -mt-24">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gray-800">Página no encontrada</h1>
-        <p className="text-lg text-gray-600 mb-8">Lo sentimos, la página que estás buscando no existe.</p>
+        <h1 className="text-4xl font-bold mb-4">Página no encontrada</h1>
+        <p className="text-lg mb-8">Lo sentimos, la página que estás buscando no existe.</p>
         <button
           onClick={() => window.history.back()}
           className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md mr-2"

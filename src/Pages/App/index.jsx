@@ -20,10 +20,7 @@ const AppRoutes = () => {
       path: "/all", element: <Home />
     },
     {
-      path: "/:category", element: <Home />
-    },
-    {
-      path: "/my-account", element: <MyAccount />
+      path: "/categories/:category", element: <Home />
     },
     {
       path: "/my-order", element: <MyOrder />
@@ -33,9 +30,6 @@ const AppRoutes = () => {
     },
     {
       path: "/my-orders", element: <MyOrders />
-    },
-    {
-      path: "/sign-in", element: <SignIn />
     },
     {
       path: "/*", element: <NotFound />

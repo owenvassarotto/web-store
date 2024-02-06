@@ -8,7 +8,7 @@ const ProductDetail = () => {
   const {isProductDetailOpen, closeProductDetail, productToShow} = useContext(ShoppingCartContext)
 
   return (
-    <aside className={`${isProductDetailOpen ? 'flex flex-col' : 'hidden'} fixed bg-white right-0 top-[68px] w-[360px] h-[calc(100vh-68px)] border border-black rounded overflow-y-scroll`}>
+    <aside className={`${isProductDetailOpen ? 'flex flex-col' : 'hidden'} fixed right-0 top-[68px] w-[360px] h-[calc(100vh-68px)] border border-gray-600 rounded overflow-y-scroll bg-slate-800`}>
         <div className="flex justify-between items-center p-4">
             <h2 className="font-medium text-xl">Detail</h2>
             <button 

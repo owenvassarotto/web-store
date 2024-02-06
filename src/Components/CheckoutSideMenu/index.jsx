@@ -30,8 +30,8 @@ const CheckoutSideMenu = () => {
   }
 
   return (
-    <aside className={`${isCheckoutSideMenuOpen ? 'flex flex-col' : 'hidden'} fixed bg-white right-0 top-[68px] w-[360px] h-[calc(100vh-68px)] border border-black rounded`}>
-        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-300 mb-2">
+    <aside className={`${isCheckoutSideMenuOpen ? 'flex flex-col' : 'hidden'} fixed bg-slate-800 right-0 top-[68px] w-[360px] h-[calc(100vh-68px)] border border-gray-600 rounded`}>
+        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-600 mb-2">
             <h2 className="font-medium text-xl">Cart</h2>
             <button 
               className="text-2xl"
@@ -56,7 +56,7 @@ const CheckoutSideMenu = () => {
             There are no products in your cart yet. 😥 
           </div>
         }
-        <div className="absolute bottom-0 left-0 w-full border-t border-gray-300 bg-white flex justify-between">
+        <div className="absolute bottom-0 left-0 w-full border-t border-gray-600 flex justify-between">
             <p className="flex gap-2 text-xl py-2 font-semibold ml-4">
               <span className="uppercase">Total:</span>
               <span>${totalPrice(cartProducts)}</span>

@@ -14,7 +14,7 @@ const NavBar = () => {
         "women's clothing"
     */ 
   return (
-    <nav id="sidebar" className="flex justify-between items-center fixed top-0 shadow w-full z-10 py-5 px-8 text-sm font-light bg-white">
+    <nav id="sidebar" className="flex justify-between items-center fixed top-0 shadow w-full z-10 py-5 px-8 text-sm font-light bg-slate-800">
         <ul className="flex items-center gap-3">
             <li className="font-semibold text-lg">
                 <Link
@@ -33,7 +33,7 @@ const NavBar = () => {
             {productsCategories?.map(category => (
                 <li key={category}>
                     <NavLink
-                        to={category}
+                        to={`categories/${category}`}
                         className="capitalize"
                     >
                         {category}
@@ -42,8 +42,8 @@ const NavBar = () => {
             ))}
         </ul>
         <ul className="flex items-center gap-3">
-            <li className="text-black/60">
-                owen@web_store.com
+            <li>
+                contact@web_store.com
             </li>
             <li>
                 <NavLink
