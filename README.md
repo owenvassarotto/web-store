@@ -2,6 +2,8 @@
 
 A simple web store project using Vite, React, and Tailwind CSS.
 
+![Screenshot from 2024-02-06 02-02-03](https://github.com/owenvassarotto/web-store/assets/110845731/49cbd605-e103-4dce-abea-52e0990d7674)
+
 ## Quick Start
 
 1. **Clone the repository:**
