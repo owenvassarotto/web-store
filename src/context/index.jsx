@@ -3,7 +3,37 @@ import { createContext, useEffect, useState } from "react";
 // creating the global context
 const ShoppingCartContext = createContext();
 
+// function to initialize localStorage
+const initializeLocalStorage = () => {
+    // getting account and sign-out of localStorage
+    const accountLocalStorage = localStorage.getItem('account');
+    const signOutLocalStorage = localStorage.getItem('sign-out');
+
+    let accountValue;
+    let signOutValue;
+
+    if(!accountLocalStorage){
+        localStorage.setItem('account', JSON.stringify({}));
+        accountValue = {};
+    }else{
+        accountValue = JSON.parse(accountLocalStorage);
+    }
+
+    if(!signOutLocalStorage){
+        localStorage.setItem('sign-out', JSON.stringify(false));
+        signOutValue = false;
+    }else{
+        signOutValue = JSON.parse(signOutLocalStorage);
+    }
+}
+
 const ShoppingCartProvider = ({children}) => {
+
+    // My account
+    const [account, setAccount] = useState({});
+
+    // Sign out
+    const [signOut, setSignOut] = useState(false);
     
     // Product Detail - Open/Close
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -65,6 +95,9 @@ const ShoppingCartProvider = ({children}) => {
             .then(response => response.json())
             .then(data => setProductsCategories(data))
             .catch(err => console.log("Error fetching products categories: ", err))
+
+        // initialize local storage
+        initializeLocalStorage();
     }, [])
 
     const filteredProductsByTitle = (items, title) => items?.filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
@@ -123,6 +156,10 @@ const ShoppingCartProvider = ({children}) => {
                 productsCategories,
                 searchByCategory,
                 setSearchByCategory,
+                account,
+                setAccount,
+                signOut,
+                setSignOut,
             }}
         >
             {children}
