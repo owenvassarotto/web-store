@@ -7,6 +7,9 @@ const NavBar = () => {
 
     const { count, openCheckoutSideMenu, closeProductDetail, productsCategories, signOut, setSignOut } = useContext(ShoppingCartContext);
 
+    // check if user is sign out 
+    const isUserSignOut = signOut || JSON.parse(localStorage.getItem('sign-out'));
+
     /*
         "electronics",
         "jewelery",
@@ -17,6 +20,51 @@ const NavBar = () => {
     const handleSignOut = () => {
         localStorage.setItem('sign-out', JSON.stringify(true));
         setSignOut(true);
+    }
+
+    const renderView = () => {
+        if(isUserSignOut){
+            return (
+                <li>
+                        <NavLink
+                            to={"/sign-in"}
+                            onClick={() => handleSignOut()}
+                        >
+                            Sign In
+                        </NavLink>
+                </li>
+            )
+        }else{
+            return (
+                <>
+                    <li>
+                        contact@web_store.com
+                    </li>
+                    <li>
+                        <NavLink
+                            to={"/my-orders"}
+                        >
+                            My Orders
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to={"/my-account"}
+                        >
+                            My Account
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to={"/sign-in"}
+                            onClick={() => handleSignOut()}
+                        >
+                            Sign Out
+                        </NavLink>
+                    </li>
+                </>
+            )
+        }
     }
 
   return (
@@ -48,40 +96,16 @@ const NavBar = () => {
             ))}
         </ul>
         <ul className="flex items-center gap-3">
-            <li>
-                contact@web_store.com
-            </li>
-            <li>
-                <NavLink
-                    to={"/my-orders"}
-                >
-                    My Orders
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
-                    to={"/my-account"}
-                >
-                    My Account
-                </NavLink>
-            </li>
-            <li>
-                <NavLink
-                    to={"/sign-in"}
-                    onClick={() => handleSignOut()}
-                >
-                    Sign Out
-                </NavLink>
-            </li>
+            {renderView()}
             <button 
-                className="font-bold flex gap-1 items-center"
-                onClick={() => {
-                    closeProductDetail()
-                    openCheckoutSideMenu()
-                }}
-            >
-                <FaShoppingBag /> 
-                {count}
+                        className="font-bold flex gap-1 items-center"
+                        onClick={() => {
+                            closeProductDetail()
+                            openCheckoutSideMenu()
+                        }}
+                    >
+                        <FaShoppingBag /> 
+                        {count}
             </button>
         </ul>
     </nav>
