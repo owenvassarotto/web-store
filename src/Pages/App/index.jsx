@@ -7,7 +7,7 @@ import NotFound from "../NotFound"
 import SignIn from "../SignIn"
 import NavBar from "../../Components/NavBar"
 import Layout from "../../Components/Layout"
-import { ShoppingCartContext, ShoppingCartProvider } from "../../context"
+import { ShoppingCartContext, ShoppingCartProvider, initializeLocalStorage } from "../../context"
 import Footer from "../../Components/Footer"
 import { useContext } from "react"
 import { hasUserAnAccount } from "../../utils"
@@ -54,6 +54,9 @@ const AppRoutes = () => {
 }
 
 const App = () => {
+
+  // initialize local storage
+  initializeLocalStorage();
 
   return (
     <ShoppingCartProvider>

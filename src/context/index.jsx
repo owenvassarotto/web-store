@@ -96,8 +96,6 @@ const ShoppingCartProvider = ({children}) => {
             .then(data => setProductsCategories(data))
             .catch(err => console.log("Error fetching products categories: ", err))
 
-        // initialize local storage
-        initializeLocalStorage();
     }, [])
 
     const filteredProductsByTitle = (items, title) => items?.filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
@@ -167,4 +165,4 @@ const ShoppingCartProvider = ({children}) => {
     )
 }
 
-export { ShoppingCartContext, ShoppingCartProvider }
+export { ShoppingCartContext, ShoppingCartProvider, initializeLocalStorage }
