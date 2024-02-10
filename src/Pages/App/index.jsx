@@ -43,6 +43,9 @@ const AppRoutes = () => {
       path: "/sign-in", element: <SignIn />
     },
     {
+      path: "/my-account", element: <MyAccount />
+    },
+    {
       path: "/*", element: <NotFound />
     },
   ])

@@ -1,8 +1,8 @@
 import { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { ShoppingCartContext } from "../../context"
-import { FaShoppingBag } from "react-icons/fa";
 import { hasUserAnAccount } from "../../utils";
+import ShoppingCart from "../ShoppingCart";
 
 const NavBar = () => {
 
@@ -98,16 +98,7 @@ const NavBar = () => {
         </ul>
         <ul className="flex items-center gap-3">
             {renderView()}
-            <button 
-                        className="font-bold flex gap-1 items-center"
-                        onClick={() => {
-                            closeProductDetail()
-                            openCheckoutSideMenu()
-                        }}
-                    >
-                        <FaShoppingBag /> 
-                        {count}
-            </button>
+            <ShoppingCart />
         </ul>
     </nav>
   )
