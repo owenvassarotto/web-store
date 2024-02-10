@@ -4,7 +4,7 @@ import ProductDetail from "../ProductDetail"
 
 const Layout = ({children}) => {
   return (
-    <div className="flex flex-col items-center mt-24 mb-4">
+    <div className="flex flex-col items-center pt-24 pb-14">
         {children}
 
         <ProductDetail />
