@@ -1,6 +1,7 @@
 import { useContext, useRef, useState } from "react"
 import { Link, Navigate } from "react-router-dom"
 import { ShoppingCartContext } from "../../context"
+import { hasUserAnAccount } from "../../utils"
 
 const SignIn = () => {
 
@@ -8,10 +9,6 @@ const SignIn = () => {
   const [view, setView] = useState("user-info");
   const form = useRef(null);
 
-  // to verify if exists an account in local storage and local state
-  const existsAccountInLocalStorage = JSON.parse(localStorage.getItem('account')) ? Object.keys(JSON.parse(localStorage.getItem('account'))).length > 0 : false;
-  const existsAccountInLocalState = context.account ? Object.keys(context.account).length > 0 : false;
-  const hasUserAnAccount = existsAccountInLocalStorage || existsAccountInLocalState;
   const parsedAccount = JSON.parse(localStorage.getItem('account'));
 
   const handleSignIn = () => {
@@ -33,13 +30,18 @@ const SignIn = () => {
 
           <p>
             <span className="font-light text-sm mr-2">Password:</span>
-            <span>{parsedAccount?.password}</span>
+            <input 
+              type="password"
+              disabled={true}
+              className="bg-transparent"
+              value={parsedAccount?.password}
+            />
           </p>
 
           <Link to={"/"}>
             <button 
               className="bg-slate-950 hover:bg-slate-950/75 desabled:bg-slate-950/40 text-white w-full rounded-lg py-3 mt-4 mb-2"
-              disabled={hasUserAnAccount === false}
+              disabled={hasUserAnAccount(context.account) === false}
               onClick={() => handleSignIn()}
             >
               Log In
@@ -52,7 +54,7 @@ const SignIn = () => {
 
           <button
             className="border border-gray-600 disabled:text-white/40 disabled:border-gray/40 rounded-lg mt-4 py-3 hover:bg-slate-950/10"
-            disabled={hasUserAnAccount === true}
+            disabled={hasUserAnAccount(context.account) === true}
             onClick={() => setView("create-user-info")}
           >
             Sign Up

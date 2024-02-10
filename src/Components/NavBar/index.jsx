@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { ShoppingCartContext } from "../../context"
 import { FaShoppingBag } from "react-icons/fa";
+import { hasUserAnAccount } from "../../utils";
 
 const NavBar = () => {
 
@@ -23,7 +24,7 @@ const NavBar = () => {
     }
 
     const renderView = () => {
-        if(isUserSignOut){
+        if(hasUserAnAccount(account) && isUserSignOut){
             return (
                 <li>
                         <NavLink
@@ -72,7 +73,7 @@ const NavBar = () => {
         <ul className="flex items-center gap-3">
             <li className="font-semibold text-lg">
                 <Link
-                    to={"/"}
+                    to={`${isUserSignOut ? 'sign-in' : '/'}`}
                 >
                     Web Store
                 </Link>
