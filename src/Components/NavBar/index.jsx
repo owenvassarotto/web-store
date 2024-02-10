@@ -5,7 +5,7 @@ import { FaShoppingBag } from "react-icons/fa";
 
 const NavBar = () => {
 
-    const { count, openCheckoutSideMenu, closeProductDetail, productsCategories, signOut, setSignOut } = useContext(ShoppingCartContext);
+    const { count, openCheckoutSideMenu, closeProductDetail, productsCategories, signOut, setSignOut, account } = useContext(ShoppingCartContext);
 
     // check if user is sign out 
     const isUserSignOut = signOut || JSON.parse(localStorage.getItem('sign-out'));
@@ -37,8 +37,8 @@ const NavBar = () => {
         }else{
             return (
                 <>
-                    <li>
-                        contact@web_store.com
+                    <li className="font-semibold">
+                        {JSON.parse(localStorage.getItem("account")).email || account.email}
                     </li>
                     <li>
                         <NavLink

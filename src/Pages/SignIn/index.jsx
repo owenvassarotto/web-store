@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { ShoppingCartContext } from "../../context"
 
 const SignIn = () => {
@@ -13,6 +13,13 @@ const SignIn = () => {
   const existsAccountInLocalState = context.account ? Object.keys(context.account).length > 0 : false;
   const hasUserAnAccount = existsAccountInLocalStorage || existsAccountInLocalState;
   const parsedAccount = JSON.parse(localStorage.getItem('account'));
+
+  const handleSignIn = () => {
+    localStorage.setItem('sign-out', JSON.stringify(false));
+    context.setSignOut(false);
+
+    return <Navigate replace to={"/"} />
+  }
 
   const renderLogin = () => {
 
@@ -33,6 +40,7 @@ const SignIn = () => {
             <button 
               className="bg-slate-950 hover:bg-slate-950/75 desabled:bg-slate-950/40 text-white w-full rounded-lg py-3 mt-4 mb-2"
               disabled={hasUserAnAccount === false}
+              onClick={() => handleSignIn()}
             >
               Log In
             </button>
@@ -61,7 +69,12 @@ const SignIn = () => {
       password: formData.get('password'),
     }
 
-    console.log(data);
+    // Create account, save user data in local storage
+    localStorage.setItem('account', JSON.stringify(data));
+    context.setAccount(data);
+
+    // Sign In
+    handleSignIn();
   }
 
   const renderCreateUserInfo = () => {
